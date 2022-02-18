@@ -1,9 +1,13 @@
 const Database = require('../Config/Database');
 
+const findAll = async () => {
+  const response = await Database.query(`
+    select * from employees order by id
+  `);
+  return response.rows;
+}
 
 const insert = ({ name, position }) => {
-  // console.log('EmployeeRepository: ', name, position);
-
   Database.query(`
     insert into employees (
       name, position, created_at, updated_at
@@ -13,9 +17,8 @@ const insert = ({ name, position }) => {
     [
     name, position,
   ]);
-
 }
 
 module.exports = {
-  insert
+  findAll, insert
 };
