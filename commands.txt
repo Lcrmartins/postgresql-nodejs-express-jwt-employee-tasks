@@ -3,3 +3,54 @@ yarn init -y
 yarn add express
 
 git checkout -b feature-post-employee
+
+git checkout -b feature-postgresql-save-employee
+
+yarn add pg
+
+yarn add dotenv
+
+yarn add nodemon -D
+
+## Configure package.json
+
+"scripts":{
+    "dev": "nodemon index.js"
+},
+
+yarn dev
+
+
+## postgresql
+### abrir o SQL Shell (psql)
+
+\l -> lista os bancos de dados existentes
+
+### cria o banco de dados (nome igual ao contido no .env)
+
+create database postgres_nodejs_express_jwt_employee_task_db; 
+
+### conecta com o banco criado.
+
+\c postgres_nodejs_express_jwt_employee_task_db; 
+
+### mostra as tabelas no banco de dados
+
+\dt 
+
+### cria as tabelas
+
+create table employees (
+  id serial primary key,
+  name text not null,
+  position text,
+  created_at timestamp not null,
+  updated_at timestamp not null
+);
+
+### mostra o conteudo da tabela employees
+
+select * from employees;
+
+\q -> sai
+
