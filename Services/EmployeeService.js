@@ -4,6 +4,10 @@ const index = async () => {
   return await EmployeeRepository.findAll();
 }
 
+const show = async (id) => {
+  return await EmployeeRepository.findEmployeeById(id);
+}
+
 const store = ({ name, position }) => {
   
   EmployeeRepository.insert({ name, position });
@@ -19,5 +23,5 @@ const destroy = async (id) => {
 }
 
 module.exports = {
-  index, store, existsId, destroy 
+  index, show, store, existsId, destroy 
 };

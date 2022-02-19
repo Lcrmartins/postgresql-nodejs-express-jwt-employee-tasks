@@ -7,6 +7,15 @@ const findAll = async () => {
   return response.rows;
 }
 
+const findEmployeeById = async (id) => {
+  const response = await Database.query(`
+    select * from employees where id=$1
+  `, [
+    id
+  ]);
+  return response.rows[0];
+}
+
 const insert = ({ name, position }) => {
   Database.query(`
     insert into employees (
@@ -38,5 +47,5 @@ const remove = async (id) => {
 }
 
 module.exports = {
-  findAll, insert, findId, remove
+  findAll, findEmployeeById, insert, findId, remove
 };
