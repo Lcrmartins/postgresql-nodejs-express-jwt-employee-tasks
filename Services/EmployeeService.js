@@ -22,6 +22,10 @@ const destroy = async (id) => {
   return await EmployeeRepository.remove(id);
 }
 
+const update = async ({ id, name, position, created_at }) => {
+  return await EmployeeRepository.update({ id, name, position, created_at });
+}
+
 module.exports = {
-  index, show, store, existsId, destroy 
+  index, show, store, existsId, destroy, update 
 };
