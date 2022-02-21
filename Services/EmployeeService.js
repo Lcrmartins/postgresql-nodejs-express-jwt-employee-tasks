@@ -26,6 +26,11 @@ const update = async ({ id, name, position, created_at }) => {
   return await EmployeeRepository.update({ id, name, position, created_at });
 }
 
+const patchPosition = async ({ id, position }) => {
+  return await EmployeeRepository.patchPosition({ id, position})
+}
+
+
 module.exports = {
-  index, show, store, existsId, destroy, update 
+  index, show, store, existsId, destroy, update, patchPosition 
 };
