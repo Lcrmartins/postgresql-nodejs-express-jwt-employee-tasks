@@ -113,4 +113,29 @@ EmployeeController.put('/:id', async (req, res) => {
 
 });
 
+EmployeeController.patch('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { position } = req.body;
+  
+  try {
+    const existsEmployee = await EmployeeService.existsId(id);
+    if (existsEmployee) {
+      try {
+        res.status(200).json(await EmployeeService.patchPosition({ id, position}));
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'EmployeeService.patchPosition({id, position}) is not working.' })
+      }
+    } else {
+      res.status(404).json({ error: `Id ${id} not found.` })
+    }
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'EmployeeService.existsId(id) is not working.' })    
+  }
+
+})
+
+
+
 module.exports = EmployeeController;
